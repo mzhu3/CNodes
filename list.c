@@ -5,14 +5,18 @@ struct node {int i; struct node *next;};
 
 void print_list(struct node *list){
   printf("[");
-  while(list->next){
-    printf("%d,", list -> i);
-    list = list ->next;
+  if(list-> i == NULL && list ->next== NULL){
+    printf("]\n");
   }
-  printf("%d", list ->i);
-  printf("]\n");
+  else{
+    while(list->next){
+      printf("%d,", list -> i);
+      list = list ->next;
+    }
+    printf("%d", list ->i);
+    printf("]\n");
+  }
 }
-
 struct node *insert_front(struct node *list , int new){
   struct node *newList = (struct node *)malloc(sizeof(struct node));
   newList ->i = new;
@@ -70,7 +74,7 @@ int main(){
 
   printf("\n");
   printf("free nod\n");
-  free_list(nod);
+  nod = free_list(nod);
   print_list(nod);
   printf("nod : %d \n", nod -> i);
   return 0;
